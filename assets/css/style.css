@@ -5,8 +5,16 @@ header{
 	text-align: center;
 }
 
+#display{
+	width: 960px;
+	height: 100px;
+	background-color: #ea4335;
+	text-align: center;
+}
+
 #game-window{
 	width: 960px;
-	height: 200px;
+	height: 500px;
 	background-color: #ea4335;
+	text-align: center;
 }

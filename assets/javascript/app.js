@@ -20,14 +20,15 @@ var timer = {
 };
 
 // ------ *** Current Game *** ------ //
-var questions = ["question1", "question2", "question3"];
-var arrayOfAnswers = ["1", "2", "3"];
+var questions = ["question1", "question2", "question3", "question4", "question5"];
+var arrayOfAnswers = ["1", "2", "3", "4", "5"];
 
 var currentGame = {
   homePage: function(){
     $("header").html("<h1>Trivia</h1>");
     $("#game-window").html("Welcome to trivia");
     $("#game-window").append("<br>Click the start button to play");
+    $("#game-window").append("<br>NOTE: <br>You have 30 seconds to answer all the questions");
     $("#game-window").append("<br><button id='start'>Start Game</button>");
   },
   newGame: function(){
@@ -37,16 +38,31 @@ var currentGame = {
     $("#game-window").append("<input id='btn0' type='radio' value='1' name='answer0'>");
     $("#game-window").append("<input id='btn1' type='radio' value='2' name='answer0'>");
     $("#game-window").append("<input id='btn2' type='radio' value='3' name='answer0'>");
+    $("#game-window").append("<br>");
 
     $("#game-window").append("<br>" + questions[1] + "<br>");
     $("#game-window").append("<input id='btn0a' type='radio' value='1' name='answer1'>");
     $("#game-window").append("<input id='btn1a' type='radio' value='2' name='answer1'>");
     $("#game-window").append("<input id='btn2a' type='radio' value='3' name='answer1'>");
+    $("#game-window").append("<br>");
 
     $("#game-window").append("<br>" + questions[2] + "<br>");
     $("#game-window").append("<input id='btn0b' type='radio' value='1' name='answer2'>");
     $("#game-window").append("<input id='btn1b' type='radio' value='2' name='answer2'>");
     $("#game-window").append("<input id='btn2b' type='radio' value='3' name='answer2'>");
+    $("#game-window").append("<br>");
+
+    $("#game-window").append("<br>" + questions[3] + "<br>");
+    $("#game-window").append("<input id='btn0c' type='radio' value='1' name='answer3'>");
+    $("#game-window").append("<input id='btn1c' type='radio' value='2' name='answer3'>");
+    $("#game-window").append("<input id='btn2c' type='radio' value='3' name='answer3'>");
+    $("#game-window").append("<br>");
+
+    $("#game-window").append("<br>" + questions[4] + "<br>");
+    $("#game-window").append("<input id='btn0d' type='radio' value='1' name='answer4'>");
+    $("#game-window").append("<input id='btn1d' type='radio' value='2' name='answer4'>");
+    $("#game-window").append("<input id='btn2d' type='radio' value='3' name='answer4'>");
+    $("#game-window").append("<br>");
 
     $("#game-window").append("<br><button id='submit'>Submit</button>");
 
@@ -63,9 +79,9 @@ var currentGame = {
       if (answers[i].checked){
         var val = $("#btn"+i).val();
         console.log(val);
-        var rightAnswer = 3;
+        var rightAnswer = arrayOfAnswers[0];
 
-        if (val == 3){
+        if (val == rightAnswer){
           correct++;
         }
         else{
@@ -88,9 +104,9 @@ var currentGame = {
       if (answers[i].checked){
         var val = $("#btn"+i+"a").val();
         console.log(val);
-        var rightAnswer = 3;
+        var rightAnswer = arrayOfAnswers[0];
 
-        if (val == 3){
+        if (val == rightAnswer){
           correct++;
         }
         else{
@@ -114,9 +130,9 @@ var currentGame = {
       if (answers[i].checked){
         var val = $("#btn"+i+"b").val();
         console.log(val);
-        var rightAnswer = 3;
+        var rightAnswer = arrayOfAnswers[0];
 
-        if (val == 3){
+        if (val == rightAnswer){
           correct++;
         }
         else{
@@ -129,6 +145,56 @@ var currentGame = {
         if (count === 3){
           unanswered++;
           count = 0;
+        }
+      }
+    }
+    count = 0;
+
+    //Validating fourth question
+    var answers = document.getElementsByName("answer3");
+    for (var i = 0; i < answers.length; i++){
+      if (answers[i].checked){
+        var val = $("#btn"+i+"c").val();
+        console.log(val);
+        var rightAnswer = arrayOfAnswers[0];
+
+        if (val == rightAnswer){
+          correct++;
+        }
+        else{
+          incorrect++;
+        }
+      }
+      else{
+        count++;
+
+        if (count === 3){
+          unanswered++;
+        }
+      }
+    }
+    count = 0;
+
+    //Validating fifth question
+    var answers = document.getElementsByName("answer4");
+    for (var i = 0; i < answers.length; i++){
+      if (answers[i].checked){
+        var val = $("#btn"+i+"d").val();
+        console.log(val);
+        var rightAnswer = arrayOfAnswers[0];
+
+        if (val == rightAnswer){
+          correct++;
+        }
+        else{
+          incorrect++;
+        }
+      }
+      else{
+        count++;
+
+        if (count === 3){
+          unanswered++;
         }
       }
     }
