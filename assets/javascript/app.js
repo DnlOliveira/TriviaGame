@@ -21,7 +21,7 @@ var timer = {
 
 // ------ *** Current Game *** ------ //
 var questions = ["question1", "question2", "question3"];
-// var answers = ["answer1", "answer2", "answer3"];
+var arrayOfAnswers = ["1", "2", "3"];
 
 var currentGame = {
   homePage: function(){
@@ -32,14 +32,21 @@ var currentGame = {
   },
   newGame: function(){
     $("#game-window").empty();
+    
+    $("#game-window").append("<br>" + questions[0] + "<br>");
+    $("#game-window").append("<input id='btn0' type='radio' value='1' name='answer0'>");
+    $("#game-window").append("<input id='btn1' type='radio' value='2' name='answer0'>");
+    $("#game-window").append("<input id='btn2' type='radio' value='3' name='answer0'>");
 
-    for(var i = 0; i < questions.length; i++){
-      $("#game-window").append("<br>" + questions[i]);
+    $("#game-window").append("<br>" + questions[1] + "<br>");
+    $("#game-window").append("<input id='btn0a' type='radio' value='1' name='answer1'>");
+    $("#game-window").append("<input id='btn1a' type='radio' value='2' name='answer1'>");
+    $("#game-window").append("<input id='btn2a' type='radio' value='3' name='answer1'>");
 
-      $("#game-window").append("<br><input type='radio' value='1' name='answer" +i+ "'>");
-      $("#game-window").append("<input type='radio' value='2' name='answer" +i+ "'>");
-      $("#game-window").append("<input type='radio' value='3' name='answer" +i+ "'>");
-    }
+    $("#game-window").append("<br>" + questions[2] + "<br>");
+    $("#game-window").append("<input id='btn0b' type='radio' value='1' name='answer2'>");
+    $("#game-window").append("<input id='btn1b' type='radio' value='2' name='answer2'>");
+    $("#game-window").append("<input id='btn2b' type='radio' value='3' name='answer2'>");
 
     $("#game-window").append("<br><button id='submit'>Submit</button>");
 
@@ -48,16 +55,17 @@ var currentGame = {
     var correct = 0;
     var incorrect = 0;
     var unanswered = 0;
+    var count = 0;
 
-
-
+    //Validating first question
     var answers = document.getElementsByName("answer0");
-    var state = $("input[name='answer0']").val();
-    console.log(state);
-
     for (var i = 0; i < answers.length; i++){
       if (answers[i].checked){
-        if (answers[i].value === 1){
+        var val = $("#btn"+i).val();
+        console.log(val);
+        var rightAnswer = 3;
+
+        if (val == 3){
           correct++;
         }
         else{
@@ -65,9 +73,66 @@ var currentGame = {
         }
       }
       else{
-        unanswered++;
+        count++;
+
+        if (count === 3){
+          unanswered++;
+        }
       }
     }
+    count = 0;
+
+    //Validating second question
+    var answers = document.getElementsByName("answer1");
+    for (var i = 0; i < answers.length; i++){
+      if (answers[i].checked){
+        var val = $("#btn"+i+"a").val();
+        console.log(val);
+        var rightAnswer = 3;
+
+        if (val == 3){
+          correct++;
+        }
+        else{
+          incorrect++;
+        }
+      }
+      else{
+        count++;
+
+        if (count === 3){
+          unanswered++;
+          count = 0;
+        }
+      }
+    }
+    count = 0;
+
+    //Validating third question
+    var answers = document.getElementsByName("answer2");
+    for (var i = 0; i < answers.length; i++){
+      if (answers[i].checked){
+        var val = $("#btn"+i+"b").val();
+        console.log(val);
+        var rightAnswer = 3;
+
+        if (val == 3){
+          correct++;
+        }
+        else{
+          incorrect++;
+        }
+      }
+      else{
+        count++;
+
+        if (count === 3){
+          unanswered++;
+          count = 0;
+        }
+      }
+    }
+    count = 0;
 
     $("#game-window").html("Answered Correctly: " + correct);
     $("#game-window").append("<br>Answered Incorrectly: " + incorrect);
